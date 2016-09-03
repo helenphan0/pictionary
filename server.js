@@ -57,7 +57,7 @@ io.on('connection', function (socket) {
 
 			// send the random word to the user inside the 'drawer' room
 			io.in('drawer').emit('draw word', newWord());
-			console.log(socket.username + "'s draw word: " + newWord());
+		//	console.log(socket.username + "'s draw word (join event): " + newWord());
 		} 
 
 		// if there are more than one names in users..
@@ -82,7 +82,8 @@ io.on('connection', function (socket) {
 
 	// submit each client's guesses to all clients
 	socket.on('guessword', function(data) {
-		io.emit('guessword', { username: data.username, guessword: data.guessword});
+		io.emit('guessword', { username: data.username, guessword: data.guessword})
+		console.log('guessword event triggered on server from: ' + data.username + ' with word: ' + data.guessword);
 	});
 
 	socket.on('disconnect', function() {
@@ -126,7 +127,7 @@ io.on('connection', function (socket) {
 		
 		// send a random word to the user connected to 'drawer' room
 		io.in('drawer').emit('draw word', newWord());
-		console.log(name + "'s draw word: " + newWord());
+	
 	});
 
 	// initiated from drawer's 'dblclick' event in Player list
@@ -144,7 +145,6 @@ io.on('connection', function (socket) {
 
 		// submit random word to new user drawer
 		io.in(data.to).emit('draw word', newWord());
-		console.log(data.to + "'s draw word: " + newWord());
 	
 		io.emit('reset', data.to);
 
@@ -152,7 +152,7 @@ io.on('connection', function (socket) {
 
 	socket.on('correct answer', function(data) {
 		io.emit('correct answer', data);
-		console.log(data.username + ' guessed correctly with ' + data.guess);
+		console.log(data.username + ' guessed correctly with ' + data.guessword);
 	});
 
 })

@@ -41,7 +41,7 @@ var guessword = function(data){
 
     if (click == true && data.guessword == $('span.word').text() ) {
         console.log('guesser: ' + data.username + ' draw-word: ' + $('span.word').text());
-        socket.emit('correct answer', {username: data.username, guess: data.guessword});
+        socket.emit('correct answer', {username: data.username, guessword: data.guessword});
     }
 };
 
@@ -65,7 +65,7 @@ var newDrawer = function() {
 };
 
 var correctAnswer = function(data) {
-    $('#guesses').html('<h4>' + data.username + ' guessed correctly with ' + data.guess + '</h4>');
+    $('#guesses').html('<h4>' + data.username + ' guessed correctly with ' + data.guessword + '</h4>');
 };
 
 var reset = function(name) {

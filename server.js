@@ -76,8 +76,8 @@ io.on('connection', function (socket) {
 	});
 
 	// submit drawing on canvas to other clients
-	socket.on('draw', function(position) {
-		socket.broadcast.emit('draw', position);
+	socket.on('draw', function(obj) {
+		socket.broadcast.emit('draw', obj);
 	});
 
 	// submit each client's guesses to all clients

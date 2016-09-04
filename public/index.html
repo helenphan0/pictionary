@@ -10,26 +10,30 @@
 }
 
 body {
-    color: #1E2835;
-    background-color: #F8F8F8;
+    color: #2F4F4F;
+    background-color: #F6F9ED;
     font-size: 1.5em;
     min-width: 1000px;
     font-family: Helvetica;
 }
 
 .row {
-    width: 900px;
+    width: 950px; 
     padding-left: 20px;
-    height: 555px;
+    height: 545px;
     position: relative;
+}
+
+.users, canvas, #guess, .draw {
+    border: 1px solid #76EEC6;
 }
 
 .users {
     display: inline-block;
-    width: 35%;
+    background-color: white;
+    width: 30%;
     height: 525px;
-    margin: 15px 10px;
-    border: 1px solid grey;
+    margin: 10px 10px;
     padding: 10px;
     vertical-align: top;
 }
@@ -47,7 +51,7 @@ ul {
     font-size: 15px;
     padding: 3px;
     margin: 0 0;
-    height: 275px;
+    height: 220px;
 
 }
 
@@ -56,50 +60,76 @@ ul>p {
     margin: 10px 0;
 }
 
+#guesses>p {
+    margin: 1px 0;
+}
+
 ul>li {
-    width: 15%;
+    width: 30%;
+    display: inline-block;
     left-margin: -15px;
+    margin-left: 5px;
+}
+
+.draw-buttons, #guesses {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.draw-buttons {
+    height: 35px;
 }
 
 #guesses {
-    height: 30px;
     font-style: italic;
     font-size: 18px;
-    text-align: center;
+    height: 28px;
+}
+
+button {
+    width: 10%;
+    height: 20px;
+    display: inline-block;
+    border-radius: 8px;
+}
+
+h1 {
+    background-color: #66CDAA;
+    margin:  0 0 1px 0;
+    padding: 10px 40px;
+    font-size: 30px;
 }
 
 
-h1 {
-    background-color: #9ABBFF;
-    margin:  0 0 1px 0;
-    padding: 20px;
-    font-size: 35px;
+#guess, .draw {
+    display: inline-block;
+    background-color: white;
+    margin-left: 20px;
+    width: 865px; 
+    height: 55px;
+}
+
+.draw {
+    padding-left: 10px 25px;
 }
 
 #guess {
-    display: inline-block;
-    width: 55%;
-    padding: 0 25px;
+    padding: 10px;
 }
 
 #guess>.guess-input {
     height: 30px;
+    width: 40%;
     padding: 3px 5px;
     font-size: 20px;
 }
 
-p {
-    margin: 1px;
+.draw>p {
+    margin: 15px;
 }
 
 .hidden {
     display: none;
-}
-
-.draw {
-    display: inline-block;
-    width: 400px;
-    margin-left: 20px;
 }
 
 #top-message {
@@ -107,13 +137,38 @@ p {
 }
 
 canvas {
-    width: 550px;
+    width: 575px;
     height: 525px;
-    border: 1px #C7CACD solid;
+ /*   border: 1px #C7CACD solid;  */
+    background-color: white;
     display: inline-block;
-    margin: 15px auto;
+    margin: 10px auto;
+    cursor: pointer;
 }
 
+.black {
+    background-color: #000000;
+}
+
+.blue {
+    background-color: #0000EE;
+}
+
+.green {
+    background-color: #66CD00;
+}
+
+.red {
+    background-color: #FF0000;
+}
+
+.yellow {
+    background-color: #FFFF00;
+}
+
+.clear, .white {
+    background-color: white;
+}
 
 </style>
 
@@ -126,8 +181,19 @@ canvas {
 <div id="main">
     <h1>Pictionary</h1>
         <div class="row">
-            <canvas id="canvas"></canvas><div class="users"><ul></ul><div id="guesses"></div>
-             <iframe width="560" height="315" src="https://www.youtube.com/embed/hnH_KraYSkc" frameborder="0" allowfullscreen></iframe>
+            <canvas id="canvas"></canvas><div class="users"><ul></ul>
+            <div id="guesses"></div>
+            <div class="draw-buttons">
+                <button value="0" class="clear" type="button">X</button>
+                <button value="#000000" class="black" type="button"></button>
+                <button value="#0000EE" class="blue" type="button"></button>
+                <button value="#66CD00" class="green" type="button"></button>
+                <button value="#FF0000" class="red" type="button"></button>
+                <button value="#FFFF00" class="yellow" type="button"></button>
+                <button value="white" class="white" type="button"></button>
+
+            </div>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/hnH_KraYSkc" frameborder="0" allowfullscreen></iframe>
 
              </div>
 

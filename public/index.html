@@ -62,13 +62,16 @@ ul>p {
 
 #guesses>p {
     margin: 1px 0;
+    padding: 2px;
 }
 
 ul>li {
-    width: 30%;
+    width: 40%;
     display: inline-block;
     left-margin: -15px;
     margin-left: 5px;
+    margin-bottom: 5px;
+    word-wrap: break-word;
 }
 
 .draw-buttons, #guesses {
@@ -82,7 +85,7 @@ ul>li {
 
 #guesses {
     font-style: italic;
-    font-size: 18px;
+    font-size: 16px;
     height: 28px;
 }
 
@@ -139,7 +142,6 @@ h1 {
 canvas {
     width: 575px;
     height: 525px;
- /*   border: 1px #C7CACD solid;  */
     background-color: white;
     display: inline-block;
     margin: 10px auto;
@@ -170,6 +172,43 @@ canvas {
     background-color: white;
 }
 
+.grey-out {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: #4A4A4A;
+    opacity: .8;
+    display: none;
+    z-index: 900;
+}
+
+.user {
+    position: relative;
+    background-color: white;
+    max-height: 300px;
+    max-width: 300px;
+    text-align: center;
+    padding: 25px 5px;
+    top: 20%;
+    margin: auto;
+    border-radius: 6px;
+}
+
+#username {
+    width: 90%;
+    font-size: 30px;
+    padding: 5px;
+    margin: 10px;
+}
+
+#submitname {
+    width: 70px;
+    height: 30px;
+    background-color: #9BCD9B;
+}
+
 </style>
 
 <!-- JS -->
@@ -177,6 +216,12 @@ canvas {
 <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="main.js"></script>
+
+<div class="grey-out hidden">
+    <form class="user"><label for="username">Enter a nickname </label><input id="username" type="text" placeholder="Bob Ross" maxlength="14" autofocus>
+    <button type="submit" id="submitname">Submit</button>
+    </form>
+</div>
 
 <div id="main">
     <h1>Pictionary</h1>

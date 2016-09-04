@@ -3,8 +3,16 @@ var socket = io();
 var user;
 
 function usernameAsk() {
-    user = prompt("Please enter a username:", "Phteven");
-    socket.emit('join', user);
+    $('.grey-out').fadeIn(500);
+    $('.user').fadeIn(500);
+    $('.user').submit(function(){
+        event.preventDefault();
+        user = $('#username').val();
+        socket.emit('join', user);
+        $('.grey-out').fadeOut(300);
+        $('.user').fadeOut(300);
+        $('input.guess').focus();
+    });
 };
 
 var context;

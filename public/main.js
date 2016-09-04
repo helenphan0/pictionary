@@ -8,6 +8,11 @@ function usernameAsk() {
     $('.user').submit(function(){
         event.preventDefault();
         user = $('#username').val();
+
+        if (user == '') {
+            return false
+        };
+        
         socket.emit('join', user);
         $('.grey-out').fadeOut(300);
         $('.user').fadeOut(300);

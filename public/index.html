@@ -13,20 +13,42 @@ body {
     color: #1E2835;
     background-color: #F8F8F8;
     font-size: 1.5em;
-    width: 100%;
+    min-width: 1000px;
     font-family: Helvetica;
 }
 
+.row {
+    width: 900px;
+    padding-left: 20px;
+    height: 555px;
+    position: relative;
+}
+
 .users {
-    margin: 3px 15px;
+    display: inline-block;
+    width: 35%;
+    height: 525px;
+    margin: 15px 10px;
+    border: 1px solid grey;
+    padding: 10px;
+    vertical-align: top;
+}
+
+iframe {
+    display: inline-block;
+    width: 95%;
+    height: 200px;
+    margin-left: 7px;
 }
 
 ul {
     list-style-type: none;
     text-align: left;
     font-size: 15px;
-    padding: 15px;
-    border: 1px solid grey;
+    padding: 3px;
+    margin: 0 0;
+    height: 275px;
+
 }
 
 ul>p {
@@ -35,23 +57,35 @@ ul>p {
 }
 
 ul>li {
-    display: inline-block;
-    width: 25%;
+    width: 15%;
     left-margin: -15px;
 }
+
+#guesses {
+    height: 30px;
+    font-style: italic;
+    font-size: 18px;
+    text-align: center;
+}
+
 
 h1 {
     background-color: #9ABBFF;
     margin:  0 0 1px 0;
     padding: 20px;
-    text-align: center;
+    font-size: 35px;
+}
+
+#guess {
+    display: inline-block;
+    width: 55%;
+    padding: 0 25px;
 }
 
 #guess>.guess-input {
     height: 30px;
-    width: 20%;
     padding: 3px 5px;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 p {
@@ -62,26 +96,24 @@ p {
     display: none;
 }
 
-#top-message {
-    text-align: center;
-    padding: 10px;
+.draw {
+    display: inline-block;
+    width: 400px;
+    margin-left: 20px;
 }
 
-#guesses {
-    font-style: italic;
+#top-message {
+    padding: 0px;
 }
 
 canvas {
-    width: 800px;
-    height: 600px;
+    width: 550px;
+    height: 525px;
     border: 1px #C7CACD solid;
-    display: block;
-    margin: 0 auto;
+    display: inline-block;
+    margin: 15px auto;
 }
 
-h4 {
-    margin: 1px 0px;
-}
 
 </style>
 
@@ -93,15 +125,21 @@ h4 {
 
 <div id="main">
     <h1>Pictionary</h1>
+        <div class="row">
+            <canvas id="canvas"></canvas><div class="users"><ul></ul><div id="guesses"></div>
+             <iframe width="560" height="315" src="https://www.youtube.com/embed/hnH_KraYSkc" frameborder="0" allowfullscreen></iframe>
+
+             </div>
+
+        </div>
     <div id="top-message">
-    <div class="users"><ul></ul></div>
         <div class="draw hidden" >
-            <p>You are the drawer! (not the furniture kind)<p>Draw this! --> <span class="word"></span></p>
+            <p>Draw this! --> <span class="word"></span></p>
         </div>
         <form id="guess" class="hidden" >
             Guess the word! <input name="guess" class="guess-input" type="text">
         </form>
-        <div id="guesses"></div>
+        
     </div>
-    <canvas id="canvas"></canvas>
+
 </div>

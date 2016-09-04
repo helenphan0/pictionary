@@ -14,7 +14,7 @@ var click = false;
 var draw = function(position) {
     context.beginPath();
     context.arc(position.x, position.y,
-                     6, 0, 2 * Math.PI);
+                     2, 0, 2 * Math.PI);
     context.fill();
 };
 
@@ -37,11 +37,12 @@ var guesser = function() {
 };
 
 var guessword = function(data){
-    $('#guesses').text(data.username + ': ' + data.guessword);
+    $('#guesses').text(data.username + "'s guess: " + data.guessword);
 
     if (click == true && data.guessword == $('span.word').text() ) {
         console.log('guesser: ' + data.username + ' draw-word: ' + $('span.word').text());
         socket.emit('correct answer', {username: data.username, guessword: data.guessword});
+        socket.emit('swap rooms', {from: user, to: data.username});
     }
 };
 
@@ -65,14 +66,14 @@ var newDrawer = function() {
 };
 
 var correctAnswer = function(data) {
-    $('#guesses').html('<h4>' + data.username + ' guessed correctly with ' + data.guessword + '</h4>');
+    $('#guesses').html('<p>' + data.username + ' guessed correctly!' + '</p>');
 };
 
 var reset = function(name) {
     context.clearRect(0, 0, canvas[0].width, canvas[0].height);
     $('#guesses').empty();
     console.log('New drawer: ' + name);
-    $('#guesses').html('<h4>' + name + ' is the new drawer.' + '</h4>');
+    $('#guesses').html('<p>' + name + ' is the new drawer.' + '</p>');
 };
 
 var pictionary = function() {

@@ -4,218 +4,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <!-- CSS -->
-<style>
-* {
-    box-sizing: border-box;
-}
+<link rel="stylesheet" href="style.css">
 
-body {
-    color: #2F4F4F;
-    background-color: #F6F9ED;
-    font-size: 1.5em;
-    min-width: 1000px;
-    font-family: Helvetica;
-}
-
-.row {
-    width: 950px; 
-    padding-left: 20px;
-    height: 545px;
-    position: relative;
-}
-
-.users, canvas, #guess, .draw {
-    border: 1px solid #76EEC6;
-}
-
-.users {
-    display: inline-block;
-    background-color: white;
-    width: 30%;
-    height: 525px;
-    margin: 10px 10px;
-    padding: 10px;
-    vertical-align: top;
-}
-
-iframe {
-    display: inline-block;
-    width: 95%;
-    height: 200px;
-    margin-left: 7px;
-}
-
-ul {
-    list-style-type: none;
-    text-align: left;
-    font-size: 15px;
-    padding: 3px;
-    margin: 0 0;
-    height: 220px;
-
-}
-
-ul>p {
-    font-weight: bold;
-    margin: 10px 0;
-}
-
-#guesses>p {
-    margin: 1px 0;
-    padding: 2px;
-}
-
-ul>li {
-    width: 40%;
-    display: inline-block;
-    left-margin: -15px;
-    margin-left: 5px;
-    margin-bottom: 5px;
-    word-wrap: break-word;
-}
-
-.draw-buttons, #guesses {
-    text-align: center;
-    margin-bottom: 5px;
-}
-
-.draw-buttons {
-    height: 35px;
-}
-
-#guesses {
-    font-style: italic;
-    font-size: 16px;
-    height: 28px;
-}
-
-button {
-    width: 10%;
-    height: 20px;
-    display: inline-block;
-    border-radius: 8px;
-}
-
-h1 {
-    background-color: #66CDAA;
-    margin:  0 0 1px 0;
-    padding: 10px 40px;
-    font-size: 30px;
-}
-
-
-#guess, .draw {
-    display: inline-block;
-    background-color: white;
-    margin-left: 20px;
-    width: 865px; 
-    height: 55px;
-}
-
-.draw {
-    padding-left: 10px 25px;
-}
-
-#guess {
-    padding: 10px;
-}
-
-#guess>.guess-input {
-    height: 30px;
-    width: 40%;
-    padding: 3px 5px;
-    font-size: 20px;
-}
-
-.draw>p {
-    margin: 15px;
-}
-
-.hidden {
-    display: none;
-}
-
-#top-message {
-    padding: 0px;
-}
-
-canvas {
-    width: 575px;
-    height: 525px;
-    background-color: white;
-    display: inline-block;
-    margin: 10px auto;
-    cursor: pointer;
-}
-
-.black {
-    background-color: #000000;
-}
-
-.blue {
-    background-color: #0000EE;
-}
-
-.green {
-    background-color: #66CD00;
-}
-
-.red {
-    background-color: #FF0000;
-}
-
-.yellow {
-    background-color: #FFFF00;
-}
-
-.clear, .white {
-    background-color: white;
-}
-
-.grey-out {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    background-color: #4A4A4A;
-    opacity: .8;
-    display: none;
-    z-index: 900;
-}
-
-.user {
-    position: relative;
-    background-color: white;
-    max-height: 300px;
-    max-width: 300px;
-    text-align: center;
-    padding: 25px 5px;
-    top: 20%;
-    margin: auto;
-    border-radius: 6px;
-}
-
-#username {
-    width: 90%;
-    font-size: 30px;
-    padding: 5px;
-    margin: 10px;
-}
-
-#submitname {
-    width: 70px;
-    height: 30px;
-    background-color: #9BCD9B;
-}
-
-</style>
 
 <!-- JS -->
 <script src="//code.jquery.com/jquery-2.1.0.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="main.js"></script>
+
 
 <div class="grey-out hidden">
     <form class="user"><label for="username">Enter a nickname </label><input id="username" type="text" placeholder="Bob Ross" maxlength="14" autofocus>
@@ -239,18 +36,14 @@ canvas {
 
             </div>
             <iframe width="560" height="315" src="https://www.youtube.com/embed/hnH_KraYSkc" frameborder="0" allowfullscreen></iframe>
-
              </div>
-
         </div>
     <div id="top-message">
         <div class="draw hidden" >
-            <p>Draw this! --> <span class="word"></span></p>
+            <p>The secret word is: <span class="word"></span></p>
         </div>
         <form id="guess" class="hidden" >
             Guess the word! <input name="guess" class="guess-input" type="text">
-        </form>
-        
+        </form> 
     </div>
-
 </div>

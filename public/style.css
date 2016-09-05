@@ -1,2 +1,209 @@
+* {
+    box-sizing: border-box;
+}
 
+body {
+    color: #2F4F4F;
+    background-color: #F6F9ED;
+    font-size: 1.5em;
+    min-width: 1000px;
+    font-family: Helvetica;
+}
+
+.row {
+    width: 950px; 
+    padding-left: 20px;
+    height: 545px;
+    position: relative;
+}
+
+.users, canvas, #guess, .draw {
+    border: 1px solid #76EEC6;
+}
+
+.users {
+    display: inline-block;
+    background-color: white;
+    width: 30%;
+    height: 525px;
+    margin: 10px 10px;
+    padding: 10px;
+    vertical-align: top;
+}
+
+iframe {
+    display: inline-block;
+    width: 95%;
+    height: 200px;
+    margin-left: 7px;
+}
+
+ul {
+    list-style-type: none;
+    text-align: left;
+    font-size: 15px;
+    padding: 3px;
+    margin: 0 0;
+    height: 220px;
+
+}
+
+ul>p {
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+#guesses>p {
+    margin: 1px 0;
+    padding: 2px;
+}
+
+ul>li {
+    width: 40%;
+    display: inline-block;
+    left-margin: -15px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    word-wrap: break-word;
+}
+
+.draw-buttons, #guesses {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.draw-buttons {
+    height: 35px;
+}
+
+#guesses {
+    font-style: italic;
+    font-size: 16px;
+    height: 28px;
+}
+
+button {
+    width: 10%;
+    height: 20px;
+    display: inline-block;
+    border-radius: 8px;
+}
+
+h1 {
+    background-color: #66CDAA;
+    margin:  0 0 1px 0;
+    padding: 10px 40px;
+    font-size: 30px;
+}
+
+
+#guess, .draw {
+    display: inline-block;
+    background-color: white;
+    margin-left: 20px;
+    width: 865px; 
+    height: 55px;
+}
+
+.draw {
+    padding-left: 10px 25px;
+}
+
+#guess {
+    padding: 10px;
+}
+
+#guess>.guess-input {
+    height: 30px;
+    width: 40%;
+    padding: 3px 5px;
+    font-size: 20px;
+}
+
+.draw>p {
+    margin: 15px;
+}
+
+span.word {
+	font-weight: bolder;
+	color: #228B22;
+}
+
+.hidden {
+    display: none;
+}
+
+#top-message {
+    padding: 0px;
+}
+
+canvas {
+    width: 575px;
+    height: 525px;
+    background-color: white;
+    display: inline-block;
+    margin: 10px auto;
+    cursor: pointer;
+}
+
+.black {
+    background-color: #000000;
+}
+
+.blue {
+    background-color: #0000EE;
+}
+
+.green {
+    background-color: #66CD00;
+}
+
+.red {
+    background-color: #FF0000;
+}
+
+.yellow {
+    background-color: #FFFF00;
+}
+
+.clear, .white {
+    background-color: white;
+}
+
+.grey-out {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: #4A4A4A;
+    opacity: .8;
+    display: none;
+    z-index: 900;
+}
+
+.user {
+    position: relative;
+    background-color: white;
+    max-height: 300px;
+    max-width: 300px;
+    text-align: center;
+    padding: 25px 5px;
+    top: 20%;
+    margin: auto;
+    border-radius: 6px;
+}
+
+#username {
+    width: 90%;
+    font-size: 30px;
+    padding: 5px;
+    margin: 10px;
+}
+
+#submitname {
+    width: 70px;
+    height: 30px;
+    background-color: #9BCD9B;
+}
 

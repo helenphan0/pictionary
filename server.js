@@ -155,6 +155,10 @@ io.on('connection', function (socket) {
 		console.log(data.username + ' guessed correctly with ' + data.guessword);
 	});
 
+	socket.on('clear screen', function(name) {
+		io.emit('clear screen', name);
+	});
+
 })
 
 server.listen(process.env.PORT || 8080, function() {

@@ -16,7 +16,7 @@ function usernameAsk() {
         socket.emit('join', user);
         $('.grey-out').fadeOut(300);
         $('.user').fadeOut(300);
-        $('input.guess').focus();
+        $('input.guess-input').focus();
     });
 };
 
@@ -24,15 +24,19 @@ var context;
 var canvas;
 var click = false;
 
-var guesser = function() {
+var clearScreen = function() {
     context.clearRect(0, 0, canvas[0].width, canvas[0].height);
+};
+
+var guesser = function() {
+    clearScreen();
     click = false;
     console.log('draw status: ' + click);
     $('.draw').hide();
     $('#guesses').empty();
     console.log('You are a guesser');
     $('#guess').show();
-    $('guess-input').focus();
+    $('.guess-input').focus();
 
     $('#guess').on('submit', function() {
         event.preventDefault();
@@ -83,30 +87,22 @@ var correctAnswer = function(data) {
 };
 
 var reset = function(name) {
-    context.clearRect(0, 0, canvas[0].width, canvas[0].height);
+    clearScreen();
     $('#guesses').empty();
     console.log('New drawer: ' + name);
     $('#guesses').html('<p>' + name + ' is the new drawer' + '</p>');
 };
 
 var draw = function(obj) {
-    if (obj.color === '0') {
-        (function() {
-            context.clearRect(0, 0, canvas[0].width, canvas[0].height);
-            context.fillStyle = 'white';
-            return
-        })();
-    };
     context.fillStyle = obj.color;
     context.beginPath();
     context.arc(obj.position.x, obj.position.y,
                      3, 0, 2 * Math.PI);
     context.fill();
-
 };
 
 var pictionary = function() {
-    context.clearRect(0, 0, canvas[0].width, canvas[0].height);
+    clearScreen();
     click = true;
     console.log('draw status: ' + click);
     $('#guess').hide();
@@ -120,6 +116,12 @@ var pictionary = function() {
     $('.draw-buttons').on('click', 'button', function(){
         obj.color = $(this).attr('value');
         console.log(obj.color);
+
+        if (obj.color === '0') {
+            socket.emit('clear screen', user);
+            context.fillStyle = 'white';
+            return;
+        };
     });
 
     console.log('You are the drawer');
@@ -169,5 +171,6 @@ $(document).ready(function() {
     socket.on('new drawer', newDrawer);
     socket.on('correct answer', correctAnswer);
     socket.on('reset', reset);
+    socket.on('clear screen', clearScreen);
 
 });

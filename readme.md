@@ -2,7 +2,7 @@
 
 This app is an exercise in Node.js and Socket.io. It contains the following features:
 
-- A prompt for a user to enter a nickname. The first user to enter is designated as the drawer, subsequent users are guesser.
+- A prompt for a user to enter a nickname. The first user to enter is designated as the drawer, subsequent users are guessers.
 
 - The drawer is able to draw on the canvas and all other users can view the drawing.
 

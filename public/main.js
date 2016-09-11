@@ -78,7 +78,7 @@ var userlist = function(names) {
 
 var newDrawer = function() {
     socket.emit('new drawer', user);
-    context.clearRect(0, 0, canvas[0].width, canvas[0].height);
+    clearScreen();
     $('#guesses').empty();
 };
 

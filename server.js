@@ -27,7 +27,7 @@ var words = [
 ];
 
 function newWord() {
-	var wordcount = Math.floor(Math.random() * (words.length + 1));
+	var wordcount = Math.floor(Math.random() * (words.length));
 	return words[wordcount];
 };
 
@@ -52,15 +52,16 @@ io.on('connection', function (socket) {
 			socket.join('drawer');
 
 			// server submits the 'drawer' event to this user
-			io.in('drawer').emit('drawer', socket.username);
+			io.in(socket.username).emit('drawer', socket.username);
 			console.log(socket.username + ' is a drawer');
 
 			// send the random word to the user inside the 'drawer' room
-			io.in('drawer').emit('draw word', newWord());
+			io.in(socket.username).emit('draw word', newWord());
 		//	console.log(socket.username + "'s draw word (join event): " + newWord());
 		} 
 
-		// if there are more than one names in users..
+		// if there are more than one names in users 
+		// or there is a person in drawer room..
 		else {
 
 			// additional users will join the 'guesser' room
@@ -104,7 +105,7 @@ io.on('connection', function (socket) {
 		if ( typeof io.sockets.adapter.rooms['drawer'] === "undefined") {
 			
 			// generate random number based on length of users list
-			var x = Math.floor(Math.random() * (users.length + 1));
+			var x = Math.floor(Math.random() * (users.length));
 			console.log('random array number: ' + x);
 			console.log(users[x]);
 

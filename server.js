@@ -27,13 +27,14 @@ var words = [
 ];
 
 function newWord() {
-	var wordcount = Math.floor(Math.random() * (words.length));
+	wordcount = Math.floor(Math.random() * (words.length));
 	return words[wordcount];
 };
 
 var wordcount;
 
 io.on('connection', function (socket) {
+	io.emit('userlist', users);
 
 	socket.on('join', function(name) {
 		socket.username = name;
@@ -71,9 +72,10 @@ io.on('connection', function (socket) {
 			io.in(socket.username).emit('guesser', socket.username);
 			console.log(socket.username + ' is a guesser');
 		}
-
+	
 		// update all clients with the list of users
 		io.emit('userlist', users);
+		
 	});
 
 	// submit drawing on canvas to other clients
@@ -99,14 +101,12 @@ io.on('connection', function (socket) {
 
 		// submit updated users list to all clients
 		io.emit('userlist', users);
-		console.log(typeof io.sockets.adapter.rooms['drawer']);
 
 		// if 'drawer' room has no connections..
 		if ( typeof io.sockets.adapter.rooms['drawer'] === "undefined") {
 			
 			// generate random number based on length of users list
 			var x = Math.floor(Math.random() * (users.length));
-			console.log('random array number: ' + x);
 			console.log(users[x]);
 
 			// submit new drawer event to the random user in userslist

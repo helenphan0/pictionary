@@ -1,5 +1,4 @@
 var socket = io();
-
 var user;
 
 function usernameAsk() {
@@ -7,9 +6,16 @@ function usernameAsk() {
     $('.user').fadeIn(500);
     $('.user').submit(function(){
         event.preventDefault();
-        user = $('#username').val();
+        user = $('#username').val().trim();
 
         if (user == '') {
+            return false
+        };
+
+        var index = users.indexOf(user);
+
+        if (index > -1) {
+            alert(user + ' already exists');
             return false
         };
         
@@ -68,7 +74,10 @@ var drawWord = function(word) {
     console.log('Your word to draw is: ' + word);
 };
 
+var users = [];
+
 var userlist = function(names) {
+    users = names;
     var html = '<p class="chatbox-header">' + 'Players' + '</p>';
     for (var i = 0; i < names.length; i++) {
         html += '<li>' + names[i] + '</li>';

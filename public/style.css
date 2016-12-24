@@ -6,15 +6,16 @@ body {
     color: #2F4F4F;
     background-color: #F6F9ED;
     font-size: 1.5em;
+    margin: 0px;
     min-width: 1000px;
     font-family: Helvetica;
 }
 
 .row {
-    width: 950px; 
-    padding-left: 20px;
-    height: 545px;
+    height: 525px;
+    width: 100%; 
     position: relative;
+    text-align: center;
 }
 
 .users, canvas, #guess, .draw {
@@ -24,8 +25,8 @@ body {
 .users {
     display: inline-block;
     background-color: white;
-    width: 30%;
-    height: 525px;
+    width: 25%;
+    height: 505px;
     margin: 10px 10px;
     padding: 10px;
     vertical-align: top;
@@ -44,7 +45,7 @@ ul {
     font-size: 15px;
     padding: 3px;
     margin: 0 0;
-    height: 220px;
+    height: 205px;
 
 }
 
@@ -91,18 +92,20 @@ button {
 
 h1 {
     background-color: #66CDAA;
+    font-size: 30px;
     margin:  0 0 1px 0;
     padding: 10px 40px;
-    font-size: 30px;
+    text-align: center;
 }
 
-
 #guess, .draw {
-    display: inline-block;
     background-color: white;
-    margin-left: 20px;
-    width: 865px; 
+    border-radius: 5px;
+    display: block;
+    margin: auto;
+    width: 950px; 
     height: 55px;
+
 }
 
 .draw {
@@ -134,12 +137,13 @@ span.word {
 }
 
 #top-message {
-    padding: 0px;
+    height: 70px;
+    padding: 5px 0px;
 }
 
 canvas {
-    width: 575px;
-    height: 525px;
+    width: 685px;
+    height: 505px;
     background-color: white;
     display: inline-block;
     margin: 10px auto;

@@ -1,5 +1,86 @@
 var socket = io();
 var user;
+var IDENTIFY_URL = function(user) {
+    return "https://api-staging.appcues.com/v1/accounts/14538/users/" + user + "/activity"
+};
+var ANNOUNCEMENTS_URL = function(user) {
+    return "https://api-staging.appcues.com/v1/accounts/14538/users/" + user + "/nc?url=" + window.location.href;
+};
+
+var getAnnouncements = function(user) {
+
+    $.ajax({
+        url: ANNOUNCEMENTS_URL(user),
+        dataType: "application/json",
+        processData: false,
+        type: "GET"
+    })
+    .error(function(resp, textStatus, jqx) {
+        console.log('ERROR in GET FLOWS', resp);
+        return [];
+    })
+    .complete(function(resp, textStatus, jqX) {
+
+        var data = JSON.parse(resp.responseText);
+        if (!data._embedded) return [];
+        var flows = data._embedded["appcues:nc_item"];
+        console.log('Fetching all flows from API', flows)
+        var announcementsData = flows.filter(function(item) {
+            return item && item.content_type === "announcement"
+        });
+        
+        var announcementsList = announcementsData.map(function(item){
+            if (item) {
+                return ({
+                    id: item.id,
+                    name: item.content.name,
+                    title: item.content.attributes.content.title,
+                    imgUrl: item.content.attributes.content.img,
+                    bodyText: item.content.attributes.content.body.bodyText,
+                    bodyHtml: item.content.attributes.content.body.bodyHtml,
+                    links: item.content.attributes.content.links
+                })
+            }
+        });
+        console.log('QUALIFIED', announcementsList)
+        if (announcementsList.legnth > 0) {
+            loadAnnouncements(announcementsList);
+        }
+        return announcementsList
+    });
+}
+
+var identify = function(user, postData) {
+    return (
+        $.ajax({
+            url: IDENTIFY_URL(user),
+            data: postData,
+            dataType: "application/json",
+            type: "POST"
+        })
+    )
+}
+
+// SAMPLE ANNOUNCEMENT
+// <div class="announcement">TITLE  TEXT HERE TITLE  TEXT HERE TITLE  TEXT HERE
+//     <div class="announcement-opened hidden">
+//         <div class="img"><img  src="https://d2gk7xgygi98cy.cloudfront.net/6527-3-large.jpg" /></div>
+//         <p class="title">TTITLE  TEXT HERE TITLE  TEXT HERE</p>
+//         <p class="bodyText">Body text</p>
+//     </div>
+
+// </div>
+
+function loadAnnouncements(announcements) {
+
+    var elements = announcements.map(function(item) {
+        var header = '<p class="title">' + item.title + '</p>';
+        var body = '<p class="bodyText">' + item.bodyText + '</p>';
+        var img = '<div class="img"><img  src="' + item.img + '" /></div>';
+        return '<div class="announcement">' + item.title +'<div class="announcement-opened hidden">' + img + header + body + '</div></div>'
+    })
+    $('.users .announcements-container .announcement-box').append(elements);
+}
 
 function usernameAsk() {
     $('.grey-out').fadeIn(500);
@@ -7,6 +88,8 @@ function usernameAsk() {
     $('.user').submit(function(){
         event.preventDefault();
         user = $('#username').val().trim();
+        var color = $('#color').val().trim();
+        var food = $('#food').val().trim();
 
         if (user == '') {
             return false
@@ -20,6 +103,21 @@ function usernameAsk() {
         };
         
         socket.emit('join', user);
+
+        var postData = {
+            "profile_update": {
+                "user": user,
+                "favorite_color": color,
+                "favorite_food": food
+            }
+        }
+
+        identify(user, postData)
+        .complete(function(resp) {
+            console.log('IDENTIFIED', postData)
+            getAnnouncements(user);
+        });
+
         $('.grey-out').fadeOut(300);
         $('.user').fadeOut(300);
         $('input.guess-input').focus();
@@ -181,5 +279,9 @@ $(document).ready(function() {
     socket.on('correct answer', correctAnswer);
     socket.on('reset', reset);
     socket.on('clear screen', clearScreen);
+
+    $('#main').on('click','.announcement',function(e){
+        $(this).find('.announcement-opened').toggleClass('hidden')
+    })
 
 });

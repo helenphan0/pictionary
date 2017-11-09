@@ -15,10 +15,6 @@ var getAnnouncements = function(user) {
         processData: false,
         type: "GET"
     })
-    .error(function(resp, textStatus, jqx) {
-        console.log('ERROR in GET FLOWS', resp);
-        return [];
-    })
     .complete(function(resp, textStatus, jqX) {
 
         var data = JSON.parse(resp.responseText);
@@ -43,7 +39,7 @@ var getAnnouncements = function(user) {
             }
         });
         console.log('QUALIFIED', announcementsList)
-        if (announcementsList.legnth > 0) {
+        if (announcementsList.length > 0) {
             loadAnnouncements(announcementsList);
         }
         return announcementsList
@@ -76,7 +72,7 @@ function loadAnnouncements(announcements) {
     var elements = announcements.map(function(item) {
         var header = '<p class="title">' + item.title + '</p>';
         var body = '<p class="bodyText">' + item.bodyText + '</p>';
-        var img = '<div class="img"><img  src="' + item.img + '" /></div>';
+        var img = '<div class="img"><img src="' + item.imgUrl + '" /></div>';
         return '<div class="announcement">' + item.title +'<div class="announcement-opened hidden">' + img + header + body + '</div></div>'
     })
     $('.users .announcements-container .announcement-box').append(elements);

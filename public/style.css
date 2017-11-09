@@ -279,12 +279,15 @@ form input::placeholder {
     left: -300px;
     top: 0px;
     width: 300px;
-    white-space: normal;
     background: whitesmoke;
-    max-height: 550px;
+    max-height: 375px;
     -webkit-box-shadow: 6px 6px 30px -5px rgba(0,0,0,0.75);
     -moz-box-shadow: 6px 6px 30px -5px rgba(0,0,0,0.75);
     box-shadow: 6px 6px 30px -5px rgba(0,0,0,0.75);
+    text-overflow: ellipsis;
+    white-space: pre;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .announcement-opened .img {
@@ -308,7 +311,6 @@ form input::placeholder {
 .announcement-opened img {
     max-width: 350px;
     width: 350px;
-
     position: relative;
     left: -10%;
     top: -10px;
@@ -316,4 +318,8 @@ form input::placeholder {
 
 .announcement-opened .bodyText {
     margin: 15px;
+    max-height: 190px;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

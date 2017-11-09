@@ -10,6 +10,13 @@ var io = socket_io(server);
 
 var users = [];
 
+var IDENTIFY_URL = function(user) {
+    return "https://api-staging.appcues.com/v1/accounts/14538/users/" + user + "/activity"
+};
+var ANNOUNCEMENTS_URL = function(user) {
+    return "https://api-staging.appcues.com/v1/accounts/14538/users/" + user + "/nc?url=" + window.location.href;
+};
+
 var words = [
     "word", "letter", "number", "person", "pen", "police", "people",
     "sound", "water", "breakfast", "place", "man", "men", "woman", "women", "boy",

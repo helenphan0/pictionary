@@ -15,28 +15,53 @@
 
 
 <div class="grey-out hidden">
-    <form class="user"><label for="username">Enter a nickname </label><input id="username" type="text" placeholder="Bob Ross" maxlength="14" autofocus>
-    <button type="submit" id="submitname">Submit</button>
+    <form class="user">
+        <label for="username">Enter a nickname </label>
+        <input id="username" type="text" placeholder="Bob Ross" maxlength="30" autofocus>
+
+        <label for="color">Your Favorite Color</label>
+        <input id="color" type="text" placeholder="light urple"/>
+
+        <label for="food">Your Favorite Food</label>
+        <input id="food" type="text" placeholder="yes"/>
+
+    <button type="submit" id="submitname">Let's Go</button>
     </form>
 </div>
 
 <div id="main">
     <h1>Pictionary</h1>
         <div class="row">
-            <canvas id="canvas"></canvas><div class="users"><ul></ul>
-            <div id="guesses"></div>
-            <div class="draw-buttons">
-                <button value="0" class="clear" type="button">X</button>
-                <button value="#000000" class="black" type="button"></button>
-                <button value="#0000EE" class="blue" type="button"></button>
-                <button value="#66CD00" class="green" type="button"></button>
-                <button value="#FF0000" class="red" type="button"></button>
-                <button value="#FFFF00" class="yellow" type="button"></button>
-                <button value="white" class="white" type="button"></button>
+            <canvas id="canvas"></canvas>
+            <div class="users">
+                <div class="announcements-container">
+                    <div class="header">Notices</div>
+                    <div class="announcement-box">
+
+                        <!-- <div class="announcement">TITLE  TEXT HERE TITLE  TEXT HERE TITLE  TEXT HERE
+                            <div class="announcement-opened hidden">
+                                <div class="img"><img  src="https://d2gk7xgygi98cy.cloudfront.net/6527-3-large.jpg" /></div>
+                                <p class="title">TTITLE  TEXT HERE TITLE  TEXT HERE</p>
+                                <p class="bodyText">Body text</p>
+                            </div>
+                        </div> -->
+
+                    </div>
+                </div>
+                <ul></ul>
+                <div id="guesses"></div>
+
+                <div class="draw-buttons">
+                    <button value="0" class="clear" type="button">X</button>
+                    <button value="#000000" class="black" type="button"></button>
+                    <button value="#0000EE" class="blue" type="button"></button>
+                    <button value="#66CD00" class="green" type="button"></button>
+                    <button value="#FF0000" class="red" type="button"></button>
+                    <button value="#FFFF00" class="yellow" type="button"></button>
+                    <button value="white" class="white" type="button"></button>
+                </div>
 
             </div>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/hnH_KraYSkc" frameborder="0" allowfullscreen></iframe>
-             </div>
         </div>
     <div id="top-message">
         <div class="draw hidden" >

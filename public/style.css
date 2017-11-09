@@ -30,6 +30,8 @@ body {
     margin: 10px 10px;
     padding: 10px;
     vertical-align: top;
+    position: absolute;
+    right: 10px;
 }
 
 iframe {
@@ -75,6 +77,9 @@ ul>li {
 
 .draw-buttons {
     height: 35px;
+    position: absolute;
+    bottom: 0px;
+    width: 90%;
 }
 
 #guesses {
@@ -148,6 +153,8 @@ canvas {
     display: inline-block;
     margin: 10px auto;
     cursor: pointer;
+    position: absolute;
+    left: 20px;
 }
 
 .black {
@@ -180,8 +187,8 @@ canvas {
     left: 0px;
     width: 100%;
     height: 100%;
-    background-color: #4A4A4A;
-    opacity: .8;
+    background-color: rgba(74,74,74,0.6);
+
     display: none;
     z-index: 900;
 }
@@ -189,8 +196,7 @@ canvas {
 .user {
     position: relative;
     background-color: white;
-    max-height: 300px;
-    max-width: 300px;
+    max-width: 65%;
     text-align: center;
     padding: 25px 5px;
     top: 20%;
@@ -198,16 +204,116 @@ canvas {
     border-radius: 6px;
 }
 
-#username {
-    width: 90%;
-    font-size: 30px;
-    padding: 5px;
+form label {
+    display: block;
     margin: 10px;
 }
 
-#submitname {
-    width: 70px;
-    height: 30px;
-    background-color: #9BCD9B;
+form input {
+    display: block;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width: 80%;
+    font-size: 30px;
+    padding: 8px 15px;
+    margin: 10px auto 25px;
 }
 
+form input::placeholder {
+  color: #aaa;
+}
+
+#submitname {
+    width: 25%;
+    height: 35px;
+    font-size: 20px;
+    background-color: transparent;
+    border: 3px solid #9BCD9B;
+}
+
+#submitname:hover {
+    background-color: #9BCD9B;
+    color: white;
+    cursor: pointer;
+}
+
+.announcements-container {
+    width: 100%;
+    height: 250px;
+    max-height: 250px;
+}
+
+.announcement-containers .header {
+    font-weight: 800px;
+    font-size: 14px
+}
+
+.announcement-box {
+    margin-top: 10px;
+}
+
+.announcement {
+    display: block;
+    border: 1px solid transparent;
+    margin: 2px 0px;
+    font-size: 14px;
+    text-align: left;
+    padding: 5px 5px;
+    max-height: 28px;
+    text-overflow: ellipsis;
+    white-space: pre;
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+}
+
+.announcement:hover {
+    border-color: grey;
+    cursor: pointer;
+
+}
+
+.announcement-opened {
+    position: absolute;
+    left: -300px;
+    top: 0px;
+    width: 300px;
+    white-space: normal;
+    background: whitesmoke;
+    max-height: 550px;
+    -webkit-box-shadow: 6px 6px 30px -5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 6px 6px 30px -5px rgba(0,0,0,0.75);
+    box-shadow: 6px 6px 30px -5px rgba(0,0,0,0.75);
+}
+
+.announcement-opened .img {
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 150px;
+    
+}
+
+.announcement-opened .title {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    font-size: 18px;
+    font-weight: 800;
+    color: white;
+    text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
+    
+}
+
+.announcement-opened img {
+    max-width: 350px;
+    width: 350px;
+
+    position: relative;
+    left: -10%;
+    top: -10px;
+}
+
+.announcement-opened .bodyText {
+    margin: 15px;
+}

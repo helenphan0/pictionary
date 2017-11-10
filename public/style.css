@@ -246,7 +246,7 @@ form input::placeholder {
 
 .announcement-containers .header {
     font-weight: 800px;
-    font-size: 14px
+    font-size: 14px;
 }
 
 .announcement-box {
@@ -255,23 +255,23 @@ form input::placeholder {
 
 .announcement {
     display: block;
-    border: 1px solid transparent;
+    border: 1px solid rgba(170,170,170,0.1);
     margin: 2px 0px;
     font-size: 14px;
     text-align: left;
-    padding: 5px 5px;
-    max-height: 28px;
+    padding: 7px 10px;
+    max-height: 30px;
     text-overflow: ellipsis;
     white-space: pre;
     overflow-x: hidden;
     overflow-y: hidden;
+    box-shadow: 5px 5px 6px -1px rgba(0,0,0,0.20);
 
 }
 
 .announcement:hover {
     border-color: grey;
     cursor: pointer;
-
 }
 
 .announcement-opened {
@@ -304,6 +304,8 @@ form input::placeholder {
     font-size: 18px;
     font-weight: 800;
     color: white;
+    max-width: 250px;
+    white-space: normal;
     text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
     
 }

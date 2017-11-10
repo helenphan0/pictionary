@@ -47,10 +47,13 @@ var getAnnouncements = function(user) {
 }
 
 var identify = function(user, postData) {
+
+    var data = JSON.stringify(postData);
     return (
         $.ajax({
             url: IDENTIFY_URL(user),
-            data: postData,
+            contentType: "application/json",
+            data: data,
             dataType: "application/json",
             type: "POST"
         })

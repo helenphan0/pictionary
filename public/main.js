@@ -76,7 +76,7 @@ function loadAnnouncements(announcements) {
         var header = '<p class="title">' + item.title + '</p>';
         var body = '<p class="bodyText">' + item.bodyText + '</p>';
         var img = '<div class="img"><img src="' + item.imgUrl + '" /></div>';
-        return '<div class="announcement">' + item.title +'<div class="announcement-opened hidden">' + img + header + body + '</div></div>'
+        return '<div class="announcement"><span>' + item.title +'</span><div class="announcement-opened hidden">' + img + header + body + '</div></div>'
     })
     $('.users .announcements-container .announcement-box').append(elements);
 }

@@ -106,7 +106,7 @@ h1 {
     display: block;
     margin: auto;
     width: 950px; 
-    height: 55px;
+    height: 50px;
 
 }
 
@@ -119,8 +119,10 @@ h1 {
 }
 
 #guess>.guess-input {
+    display: inline-block;
     height: 30px;
-    width: 40%;
+    width: 70%;
+    margin: 0px 10px;
     padding: 3px 5px;
     font-size: 20px;
 }

@@ -259,13 +259,18 @@ form input::placeholder {
     margin: 2px 0px;
     font-size: 14px;
     text-align: left;
-    padding: 5px 10px;
     height: 30px;
     text-overflow: ellipsis;
     white-space: pre;
     box-shadow: 5px 5px 6px -1px rgba(0,0,0,0.20);
     vertical-align: middle;
 
+}
+
+.announcement>span {
+    display: inline-block;
+    width: 100%;
+    padding: 5px 10px;
 }
 
 .announcement:hover {
@@ -333,10 +338,10 @@ form input::placeholder {
 }
 
 .announcement-opened .bodyText {
-    margin: 15px 15px 0;
+    margin: 15px 10px 0;
     max-height: 170px;
     white-space: normal;
-    overflow: hidden;
+    overflow-y: scroll;
     text-overflow: ellipsis;
 }
 

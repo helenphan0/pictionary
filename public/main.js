@@ -1,11 +1,22 @@
 var socket = io();
 var user;
+
+// Staging
+// "https://api-staging.appcues.com"
+// 14538
+
+// Prod
+// "https://api.appcues.com"
+// 30401
+
 var API_URL = "https://api-staging.appcues.com";
+var ACCOUNT_ID = 14538;
+
 var IDENTIFY_URL = function(user) {
-    return API_URL + "/v1/accounts/14538/users/" + user + "/activity"
+    return API_URL + "/v1/accounts/" + ACCOUNT_ID + "/users/" + user + "/activity"
 };
 var ANNOUNCEMENTS_URL = function(user) {
-    return API_URL + "/v1/accounts/14538/users/" + user + "/nc?url=" + window.location.href;
+    return API_URL + "/v1/accounts/" + ACCOUNT_ID + "/users/" + user + "/nc?url=" + window.location.href;
 };
 var MARK_SEEN = "appcues:nc_item_mark_seen";
 var CLEAR_SEEN = "appcues:nc_item_clear_seen";

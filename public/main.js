@@ -1,11 +1,14 @@
 var socket = io();
 var user;
+var API_URL = "https://api-staging.appcues.com";
 var IDENTIFY_URL = function(user) {
-    return "https://api-staging.appcues.com/v1/accounts/14538/users/" + user + "/activity"
+    return API_URL + "/v1/accounts/14538/users/" + user + "/activity"
 };
 var ANNOUNCEMENTS_URL = function(user) {
-    return "https://api-staging.appcues.com/v1/accounts/14538/users/" + user + "/nc?url=" + window.location.href;
+    return API_URL + "/v1/accounts/14538/users/" + user + "/nc?url=" + window.location.href;
 };
+var MARK_SEEN = "appcues:nc_item_mark_seen";
+var CLEAR_SEEN = "appcues:nc_item_clear_seen";
 
 var getAnnouncements = function(user) {
 
@@ -29,12 +32,15 @@ var getAnnouncements = function(user) {
             if (item) {
                 return ({
                     id: item.id,
+                    seen: item.seen,
                     name: item.content.name,
                     title: item.content.attributes.content.title,
                     imgUrl: item.content.attributes.content.img,
                     bodyText: item.content.attributes.content.body.bodyText,
                     bodyHtml: item.content.attributes.content.body.bodyHtml,
-                    links: item.content.attributes.content.links
+                    links: item.content.attributes.content.links,
+                    markSeenUrl: API_URL + item._links[MARK_SEEN].href,
+                    clearSeenUrl: API_URL + item._links[CLEAR_SEEN].href
                 })
             }
         });
@@ -60,23 +66,38 @@ var identify = function(user, postData) {
     )
 }
 
+var toggleSeen = function(URL) {
+    return (
+        $.ajax({
+            url: URL,
+            contentType: "application/json",
+            dataType: "application/json",
+            type: "POST"
+        })
+    )
+}
+
 // SAMPLE ANNOUNCEMENT
-// <div class="announcement">TITLE  TEXT HERE TITLE  TEXT HERE TITLE  TEXT HERE
+// <div class="announcement">
+//     <span>TITLE  TEXT HERE TITLE  TEXT HERE TITLE  TEXT HERE</span>
 //     <div class="announcement-opened hidden">
 //         <div class="img"><img  src="https://d2gk7xgygi98cy.cloudfront.net/6527-3-large.jpg" /></div>
 //         <p class="title">TTITLE  TEXT HERE TITLE  TEXT HERE</p>
 //         <p class="bodyText">Body text</p>
 //     </div>
-
 // </div>
 
 function loadAnnouncements(announcements) {
-
+    $('.users .announcements-container .announcement-box').empty();
     var elements = announcements.map(function(item) {
+
+        var checkMark = '<img class="check ' + (item.seen ? '' : 'hidden') + '" src="http://findicons.com/files/icons/767/wp_woothemes_ultimate/128/checkmark.png" />';
         var header = '<p class="title">' + item.title + '</p>';
         var body = '<p class="bodyText">' + item.bodyText + '</p>';
         var img = '<div class="img"><img src="' + item.imgUrl + '" /></div>';
-        return '<div class="announcement"><span>' + item.title +'</span><div class="announcement-opened hidden">' + img + header + body + '</div></div>'
+        var markBtn = '<button type="button" class="mark-btn" data-url="' + item.markSeenUrl + '">Mark Seen</button>';
+        var clearBtn = '<button type="button" class="clear-btn" data-url="' + item.clearSeenUrl +'">Clear Seen</button>';
+        return '<div class="announcement"><span><span>' + item.title + '</span>' + checkMark + '</span><div class="announcement-opened hidden">' + img + header + body + '<div class="btn-row">'+ markBtn + clearBtn + '</div></div></div>';
     })
     $('.users .announcements-container .announcement-box').append(elements);
 }
@@ -279,8 +300,32 @@ $(document).ready(function() {
     socket.on('reset', reset);
     socket.on('clear screen', clearScreen);
 
-    $('#main').on('click','.announcement',function(e){
-        $(this).find('.announcement-opened').toggleClass('hidden')
+    $('#main').on('click','.announcement>span',function(e){
+        $(this).siblings('.announcement-opened').toggleClass('hidden');
+    })
+
+    $('#main').on('click','.announcement .mark-btn',function(e){
+        e.preventDefault();
+        $(this).closest('.announcement-opened').toggleClass('hidden');
+        var markUrl = $(this).data('url');
+
+        toggleSeen(markUrl)
+        .complete(function(resp) {
+            console.log('UPDATE LIST for', user);
+            getAnnouncements(user);
+        });
+    })
+
+    $('#main').on('click','.announcement .clear-btn',function(e){
+        e.preventDefault();
+        $(this).closest('.announcement-opened').toggleClass('hidden');
+        var clearUrl = $(this).data('url');
+
+        toggleSeen(clearUrl)
+        .complete(function(resp) {
+            console.log('UPDATE LIST for ', user);
+            getAnnouncements(user);
+        });
     })
 
 });

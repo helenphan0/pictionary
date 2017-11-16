@@ -25,7 +25,10 @@ body {
 }
 
 .users {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     background-color: white;
     width: 25%;
     height: 505px;
@@ -46,7 +49,7 @@ ul {
     font-size: 15px;
     padding: 3px;
     margin: 0 0;
-    height: 205px;
+    height: 180px;
 
 }
 
@@ -256,11 +259,12 @@ form input::placeholder {
     margin: 2px 0px;
     font-size: 14px;
     text-align: left;
-    padding: 7px 10px;
-    max-height: 30px;
+    padding: 5px 10px;
+    height: 30px;
     text-overflow: ellipsis;
     white-space: pre;
     box-shadow: 5px 5px 6px -1px rgba(0,0,0,0.20);
+    vertical-align: middle;
 
 }
 
@@ -275,7 +279,7 @@ form input::placeholder {
     top: -27px;
     width: 300px;
     background: whitesmoke;
-    max-height: 375px;
+    max-height: 385px;
     -webkit-box-shadow: 6px 6px 30px -5px rgba(0,0,0,0.75);
     -moz-box-shadow: 6px 6px 30px -5px rgba(0,0,0,0.75);
     box-shadow: 6px 6px 30px -5px rgba(0,0,0,0.75);
@@ -283,6 +287,7 @@ form input::placeholder {
     white-space: pre;
     overflow-x: hidden;
     overflow-y: hidden;
+    cursor: default;
 }
 
 .announcement-opened .img {
@@ -291,12 +296,19 @@ form input::placeholder {
     max-height: 150px;
     
 }
-.announcement span {
+
+.announcement>span>span {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     display: inline-block;
-    width: 100%;
+    width: 90%;
+    vertical-align: middle;
+}
+
+.announcement .check {
+    height: 16px;
+    vertical-align: middle;
 }
 
 .announcement-opened .title {
@@ -321,9 +333,29 @@ form input::placeholder {
 }
 
 .announcement-opened .bodyText {
-    margin: 15px;
-    max-height: 190px;
+    margin: 15px 15px 0;
+    max-height: 170px;
     white-space: normal;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.btn-row {
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+}
+
+.btn-row button {
+    border: 1px solid grey;
+    border-radius: 4px;
+    background-color: transparent;
+    padding: 5px 10px;
+    margin: 4px;
+    width: auto;
+    height: auto;
+}
+
+.btn-row button:hover {
+    cursor: pointer;
 }
